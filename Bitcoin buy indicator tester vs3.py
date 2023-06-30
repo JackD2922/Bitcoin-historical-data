@@ -61,23 +61,25 @@ root.title('Analysis')
 root.geometry("500x200")
 
 # Create a text widget to display the output
-output_text = Text(root, width=50, height=12, wrap=WORD)
+output_text = Text(root, width=70, height=15, wrap=WORD)
 output_text.pack()
 
 def print_to_text_widget(message):
-    output_text.insert(END, message + "\n")
+    indented_message = "    " + message
+    output_text.insert(END, message)
 
-print_to_text_widget("Using the historical bitcoin price data provided, " + str(periods_checked) + " 14-day periods were checked.\n")
+print_to_text_widget(f"Using the historical bitcoin price data provided, {periods_checked} 14-day periods were checked.")
 
 if buy != 0:
     rsi_score = (buy_good / buy) * 100
-    print_to_text_widget("The Relative Strength Index as a buying predictor had an accuracy of {:.2f}%.\n".format(rsi_score))
+    print_to_text_widget("The Relative Strength Index as a buying predictor had an accuracy of {:.2f}%.".format(rsi_score))
 else:
-    print_to_text_widget("No bitcoin bought")
+    print_to_text_widget("No bitcoin bought\n")
 
-print_to_text_widget("Using the RSI, there were " + str(buy) + " bitcoin bought. Of these purchases of bitcoin, the real closing price of bitcoin was higher the next day " + str(buy_good) + " times.")
+print_to_text_widget(f"Using the RSI, there were {buy} bitcoin bought. Of these purchases of bitcoin, the real closing price of bitcoin was higher the next day {buy_good} times.")
+
 
 # Configure the font size of the text widget
-output_text.configure(font=("Arial", 12))
+output_text.configure(font=("Arial", 14))
 
 root.mainloop()

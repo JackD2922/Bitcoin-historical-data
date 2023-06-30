@@ -15,9 +15,8 @@ class FourteenDayRSI:
         average_loss = np.mean(losses)
         
         if average_loss == 0:
-            rsi = 100
-        else:
-            rs = average_gain / average_loss
-            rsi = 100 - (100 / (1 + rs))
+            return 100
+
+        rs = average_gain / average_loss
         
-        return rsi
+        return 100 - (100 / (1 + rs))
